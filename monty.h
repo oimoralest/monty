@@ -67,7 +67,10 @@ typedef struct info
 	instruction_t *exec_opcode;
 } info;
 
+/* Global Variables */
+info *fd_flags;
 /* Prototypes */
+int init_vars(info *fd_flags);
 void _open(char *file_name);
 void _run(void);
 int check(char *str, stack_t **stack);
@@ -99,7 +102,5 @@ void freedp(char **str);
 void superfree(stack_t *stack);
 char *_strtok(char *arg, char *dlm);
 
-/* Global Variables */
-info *fd_flags;
 
 #endif /* MONTY_H */
