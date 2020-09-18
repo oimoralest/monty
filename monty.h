@@ -101,6 +101,5 @@ char *_strtok(char *arg, char *dlm);
 
 /* Global Variables */
 info *fd_flags;
-#define BUFFERSIZE 10240
 
 #endif /* MONTY_H */

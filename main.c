@@ -111,8 +111,9 @@ void _run(void)
  */
 int main(int argc, char *argv[])
 {
-	char *file_name = argv[1];
+	char *file_name = NULL;
 
+	file_name = argv[1];
 	if (argc != 2)
 	{
 		dprintf(STDERR_FILENO, "USAGE: monty file\n");
