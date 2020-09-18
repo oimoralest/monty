@@ -61,7 +61,7 @@ void pstr(stack_t **stack, unsigned int line_number)
 	(void)line_number;
 	while (aux && aux->n > 0)
 	{
-		if (aux->n < 31 || aux->n > 127)
+		if (aux->n < 0 || aux->n > 127)
 			break;
 		putchar(aux->n);
 		aux = aux->next;
