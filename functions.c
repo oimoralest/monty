@@ -10,7 +10,7 @@ void push(stack_t **stack, unsigned int line_number)
 
 	if (!fd_flags->integer || !checkdigits(fd_flags->integer))
 	{
-		fprintf(stderr, "L%i: usage: push integer\n", line_number);
+		dprintf(STDERR_FILENO, "L%i: usage: push integer\n", line_number);
 		free_listint(*stack);
 		free(fd_flags->exec_opcode);
 		free(fd_flags->buffer);
@@ -62,7 +62,7 @@ void pint(stack_t **stack, unsigned int line_number)
 {
 	if (!*stack)
 	{
-		fprintf(stderr, "L%i: can't pint, stack empty\n", line_number);
+		dprintf(STDERR_FILENO, "L%i: can't pint, stack empty\n", line_number);
 		free_listint(*stack);
 		free(fd_flags->exec_opcode);
 		free(fd_flags->buffer);
@@ -82,7 +82,7 @@ void pop(stack_t **stack, unsigned int line_number)
 {
 	if (!*stack)
 	{
-		fprintf(stderr, "L%i: can't pop an empty stack\n", line_number);
+		dprintf(STDERR_FILENO, "L%i: can't pop an empty stack\n", line_number);
 		free_listint(*stack);
 		free(fd_flags->exec_opcode);
 		free(fd_flags->buffer);
@@ -102,7 +102,7 @@ void swap(stack_t **stack, unsigned int line_number)
 {
 	if (!(*stack) ||  !(*stack)->next)
 	{
-		fprintf(stderr, "L%i: can't swap, stack too short\n",
+		dprintf(STDERR_FILENO, "L%i: can't swap, stack too short\n",
 			line_number);
 		free_listint(*stack);
 		free(fd_flags->exec_opcode);
