@@ -5,6 +5,7 @@
  */
 void _open(char *file_name)
 {
+	fd_flags->fd_open = NULL;
 	fd_flags->fd_open = fopen(file_name, "r");
 	if (!fd_flags->fd_open)
 	{
