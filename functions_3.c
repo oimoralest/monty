@@ -78,7 +78,8 @@ void pchar(stack_t **stack, unsigned int line_number)
 {
 	if (!(*stack))
 	{
-		dprintf(STDERR_FILENO, "L%i: can't pchar, stack empty\n", line_number);
+		dprintf(STDERR_FILENO, "L%i: can't pchar, stack empty\n",
+			line_number);
 		free_listint(*stack);
 		free(fd_flags->exec_opcode);
 		free(fd_flags->buffer);

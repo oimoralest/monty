@@ -10,7 +10,8 @@ void push(stack_t **stack, unsigned int line_number)
 
 	if (!fd_flags->integer || !checkdigits(fd_flags->integer))
 	{
-		dprintf(STDERR_FILENO, "L%i: usage: push integer\n", line_number);
+		dprintf(STDERR_FILENO, "L%i: usage: push integer\n",
+			line_number);
 		free_listint(*stack);
 		free(fd_flags->exec_opcode);
 		free(fd_flags->buffer);
@@ -63,7 +64,8 @@ void pint(stack_t **stack, unsigned int line_number)
 {
 	if (!*stack)
 	{
-		dprintf(STDERR_FILENO, "L%i: can't pint, stack empty\n", line_number);
+		dprintf(STDERR_FILENO, "L%i: can't pint, stack empty\n",
+			line_number);
 		free_listint(*stack);
 		free(fd_flags->exec_opcode);
 		free(fd_flags->buffer);
@@ -83,7 +85,8 @@ void pop(stack_t **stack, unsigned int line_number)
 {
 	if (!*stack)
 	{
-		dprintf(STDERR_FILENO, "L%i: can't pop an empty stack\n", line_number);
+		dprintf(STDERR_FILENO, "L%i: can't pop an empty stack\n",
+			line_number);
 		free_listint(*stack);
 		free(fd_flags->exec_opcode);
 		free(fd_flags->buffer);
@@ -91,7 +94,14 @@ void pop(stack_t **stack, unsigned int line_number)
 		free(fd_flags);
 		exit(EXIT_FAILURE);
 	}
-	delete_dnodeint_at_index(stack, 0);
+	if (!(*stack)->next)
+		free(*stack);
+	else
+	{
+		*stack = (*stack)->next;
+		free((*stack)->prev);
+		(*stack)->prev = NULL;
+	}
 }
 /**
  * swap - swap the two elements at the top
@@ -115,6 +125,7 @@ void swap(stack_t **stack, unsigned int line_number)
 	*stack = (*stack)->next;
 	(*stack)->prev->next = (*stack)->next;
 	(*stack)->prev->prev = *stack;
+	(*stack)->next->prev = (*stack)->prev;
 	(*stack)->next = (*stack)->prev;
 	(*stack)->prev = NULL;
 }

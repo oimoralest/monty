@@ -9,7 +9,8 @@ void _open(char *file_name)
 	fd_flags->fd_open = fopen(file_name, "r");
 	if (!fd_flags->fd_open)
 	{
-		dprintf(STDERR_FILENO, "Can't open file %s\n", file_name);
+		dprintf(STDERR_FILENO, "Error: Can't open file %s\n",
+			file_name);
 		free(fd_flags);
 		exit(EXIT_FAILURE);
 	}
@@ -68,8 +69,7 @@ void add(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	(*stack)->next->n = (*stack)->n + (*stack)->next->n;
-	*stack = (*stack)->next;
-	free((*stack)->prev);
+	pop(stack, line_number);
 	(*stack)->prev = NULL;
 }
 /**

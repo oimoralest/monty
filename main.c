@@ -87,7 +87,8 @@ void _run(void)
 		{
 			if (fd_flags->exec_opcode[j].f == NULL)
 			{
-				dprintf(STDERR_FILENO, "L%i: unknown instruction %s\n",
+				dprintf(STDERR_FILENO,
+					"L%i: unknown instruction %s\n",
 					fd_flags->linecounter, fd_flags->lines);
 				superfree(stack);
 			}
