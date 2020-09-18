@@ -46,7 +46,8 @@ typedef struct instruction_s
  * struct info - information about the file, flags and linecounter
  * @fd_open: file descriptor
  * @linecounter: count the lines
- * @totalLines: total amount of lines
+ * @number: number
+ * @buffer: buffer getline
  * @queueFlag: flag to know is a queue
  * @integer: data of the integer
  * @stack_index: keep the index to add when a queue is on
@@ -68,7 +69,7 @@ typedef struct info
 
 /* Prototypes */
 void _open(char *file_name);
-void _run();
+void _run(void);
 int check(char *str, stack_t **stack);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);

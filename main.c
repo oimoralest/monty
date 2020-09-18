@@ -91,18 +91,17 @@ void _run(void)
 					fd_flags->linecounter, fd_flags->lines);
 				superfree(stack);
 			}
-			if (!strcmp(fd_flags->exec_opcode[j].opcode, fd_flags->lines))
+			if (!strcmp(fd_flags->exec_opcode[j].opcode,
+					fd_flags->lines))
 			{
-				fd_flags->exec_opcode[j].f(&stack, fd_flags->linecounter);
+				fd_flags->exec_opcode[j].f(&stack,
+					fd_flags->linecounter);
 				break;
-			}
-			j++;
-		}
-		j = 0, fd_flags->linecounter++;
+			} j++;
+		} j = 0, fd_flags->linecounter++;
 		free(fd_flags->buffer), fd_flags->lines = NULL;
 		fd_flags->buffer = NULL, fd_flags->integer = NULL;
-	}
-	free_listint(stack), free(fd_flags->exec_opcode);
+	} free_listint(stack), free(fd_flags->exec_opcode);
 }
 /**
  * main - entry point
