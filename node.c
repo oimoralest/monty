@@ -15,7 +15,7 @@ stack_t *add_dnodeint(stack_t **stack, const int n)
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
+		dprintf(STDERR_FILENO, "Error: malloc failed\n");
 		free_listint(*stack);
 		free(fd_flags->exec_opcode);
 		free(fd_flags->buffer);
@@ -53,7 +53,7 @@ stack_t *add_dnodeint_end(stack_t **stack, const int n)
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
+		dprintf(STDERR_FILENO, "Error: malloc failed\n");
 		free_listint(*stack);
 		free(fd_flags->exec_opcode);
 		free(fd_flags->buffer);
@@ -105,7 +105,7 @@ stack_t *add_dnode_at_index(stack_t **stack, unsigned int idx, int n)
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
+		dprintf(STDERR_FILENO, "Error: malloc failed\n");
 		free_listint(*stack);
 		free(fd_flags->exec_opcode);
 		free(fd_flags->buffer);

@@ -8,7 +8,7 @@ void _open(char *file_name)
 	fd_flags->fd_open = fopen(file_name, "r");
 	if (!fd_flags->fd_open)
 	{
-		fprintf(stderr, "Can't open file %s\n", file_name);
+		dprintf(STDERR_FILENO, "Can't open file %s\n", file_name);
 		free(fd_flags);
 		exit(EXIT_FAILURE);
 	}
@@ -23,7 +23,11 @@ int checkdigits(char *s)
 	int a = 0;
 
 	while (s[a] == '-')
+	{
 		a++;
+		if (s[a] == '\0')
+			return (0);
+	}
 	for (; s[a] != '\0'; a++)
 	{
 		if (!_isdigit(s[a]))
@@ -53,7 +57,7 @@ void add(stack_t **stack, unsigned int line_number)
 {
 	if (!(*stack) || !(*stack)->next)
 	{
-		fprintf(stderr, "L%i: can't add, stack too short\n",
+		dprintf(STDERR_FILENO, "L%i: can't add, stack too short\n",
 			line_number);
 		free_listint(*stack);
 		free(fd_flags->exec_opcode);

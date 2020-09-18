@@ -9,7 +9,7 @@ void sub(stack_t **stack, unsigned int line_number)
 {
 	if (!(*stack) || !(*stack)->next)
 	{
-		fprintf(stderr, "L%i: can't sub, stack too short\n",
+		dprintf(STDERR_FILENO, "L%i: can't sub, stack too short\n",
 			line_number);
 		free_listint(*stack);
 		free(fd_flags->exec_opcode);
@@ -33,7 +33,7 @@ void mul(stack_t **stack, unsigned int line_number)
 {
 	if (!(*stack) || !(*stack)->next)
 	{
-		fprintf(stderr, "L%i: can't mul, stack too short\n",
+		dprintf(STDERR_FILENO, "L%i: can't mul, stack too short\n",
 			line_number);
 		free_listint(*stack);
 		free(fd_flags->exec_opcode);

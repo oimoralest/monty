@@ -9,7 +9,7 @@ void _div(stack_t **stack, unsigned int line_number)
 {
 	if (!(*stack) || !(*stack)->next)
 	{
-		fprintf(stderr, "L%i: can't div, stack too short\n",
+		dprintf(STDERR_FILENO, "L%i: can't div, stack too short\n",
 			line_number);
 		free_listint(*stack);
 		free(fd_flags->exec_opcode);
@@ -20,7 +20,7 @@ void _div(stack_t **stack, unsigned int line_number)
 	}
 	if ((*stack)->n == 0)
 	{
-		fprintf(stderr, "L%i: division by zero\n", line_number);
+		dprintf(STDERR_FILENO, "L%i: division by zero\n", line_number);
 		free_listint(*stack);
 		free(fd_flags->exec_opcode);
 		free(fd_flags->buffer);
@@ -43,7 +43,7 @@ void mod(stack_t **stack, unsigned int line_number)
 {
 	if (!(*stack) || !(*stack)->next)
 	{
-		fprintf(stderr, "L%i: can't mod, stack too short\n",
+		dprintf(STDERR_FILENO, "L%i: can't mod, stack too short\n",
 			line_number);
 		free_listint(*stack);
 		free(fd_flags->exec_opcode);
@@ -54,7 +54,7 @@ void mod(stack_t **stack, unsigned int line_number)
 	}
 	if ((*stack)->n == 0)
 	{
-		fprintf(stderr, "L%i: division by zero\n", line_number);
+		dprintf(STDERR_FILENO, "L%i: division by zero\n", line_number);
 		free_listint(*stack);
 		free(fd_flags->exec_opcode);
 		free(fd_flags->buffer);
@@ -78,7 +78,7 @@ void pchar(stack_t **stack, unsigned int line_number)
 {
 	if (!(*stack))
 	{
-		fprintf(stderr, "L%i: can't pchar, stack empty\n", line_number);
+		dprintf(STDERR_FILENO, "L%i: can't pchar, stack empty\n", line_number);
 		free_listint(*stack);
 		free(fd_flags->exec_opcode);
 		free(fd_flags->buffer);
@@ -88,7 +88,7 @@ void pchar(stack_t **stack, unsigned int line_number)
 	}
 	if ((*stack)->n < 31 && (*stack)->n > 127)
 	{
-		fprintf(stderr, "L%i: can't pchar, value out of range\n",
+		dprintf(STDERR_FILENO, "L%i: can't pchar, value out of range\n",
 			line_number);
 		free_listint(*stack);
 		free(fd_flags->exec_opcode);

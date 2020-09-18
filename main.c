@@ -30,7 +30,7 @@ instruction_t *init_instruction(void)
 	init_f = malloc(sizeof(instruction_t) * 16);
 	if (!init_f)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
+		dprintf(STDERR_FILENO, "Error: malloc failed\n");
 		fclose(fd_flags->fd_open);
 		free(fd_flags);
 		exit(EXIT_FAILURE);
@@ -87,7 +87,7 @@ void _run(void)
 		{
 			if (fd_flags->exec_opcode[j].f == NULL)
 			{
-				fprintf(stderr, "L%i: unknown instruction %s\n",
+				dprintf(STDERR_FILENO, "L%i: unknown instruction %s\n",
 					fd_flags->linecounter, fd_flags->lines);
 				superfree(stack);
 			}
@@ -115,13 +115,13 @@ int main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		write(2, "USAGE: monty file\n", 19);
+		dprintf(STDERR_FILENO, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	fd_flags = malloc(sizeof(info));
 	if (!fd_flags)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
+		dprintf(STDERR_FILENO, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	_open(file_name);/* open file */
